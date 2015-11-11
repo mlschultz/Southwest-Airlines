@@ -33,6 +33,8 @@ shinyServer(function(input, output) {
     allData <- merge.xts(Cfunding, Cinvesting, Ifunding, Iinvesting, join = "inner")
     allData <- allData[complete.cases(allData),]
     names(allData) <- c("Cfunding", "Cinvesting", "Ifunding", "Iinvesting")
+        allData <- allData[paste(input$dates[1],"/",input$dates[2], sep = "")]
+        
     
     ## cross rate is JPY/GBP -- the amount of yes per GBP ----
     crossRate <- allData$Cfunding * allData$Cinvesting
@@ -62,7 +64,7 @@ shinyServer(function(input, output) {
     
     ## TODO: Now we need to input the carry trade profit calculation here ---- 
     
-    dygraph(totRet) %>%
+        dygraph(dataInput()) %>%
       dyRangeSelector()
   })
 })
