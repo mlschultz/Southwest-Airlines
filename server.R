@@ -41,17 +41,17 @@ shinyServer(function(input, output) {
     
     ## percent chage in currencies
     perChangeGBP <- Delt(crossRate)[-1]
-    perChangeJPY <- lag(crossRate)[-1]/crossRate[-length(crossRate)]
+    perChangeJPY <- lag(crossRate)[-1]/crossRate[-length(crossRate)] - 1
     
     if(fxFundingSym == "EXJPUS") {
       FXret <- cumsum(perChangeGBP)
       Iret <- cumsum((allData$Iinvesting[-1] - allData$Ifunding[-1])/12)
-      totRet <- FXret + Iret
+      totRet <- FXret * 100 + Iret
       
     } else {
       FXret <- cumsum(perChangeGBP)
       Iret <- cumsum((allData$Iinvesting[-1] - allData$Ifunding[-1])/12)
-      totRet <- -FXret + Iret
+      totRet <- -FXret * 100 + Iret
       
     }
     totRet <<- totRet
