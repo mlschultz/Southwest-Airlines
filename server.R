@@ -64,7 +64,7 @@ shinyServer(function(input, output) {
     
     ## TODO: Now we need to input the carry trade profit calculation here ---- 
     
-        dygraph(dataInput()) %>%
+        dygraph(dataInput()) %>%  ## you can use 'main = ' and 'ylab =' and so forth here to set the charts title, yaxis, and so on
       dyRangeSelector()
   })
 })
