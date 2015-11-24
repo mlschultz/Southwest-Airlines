@@ -36,10 +36,10 @@ shinyServer(function(input, output) {
         allData <- allData[paste(input$dates[1],"/",input$dates[2], sep = "")]
         
     
-    ## cross rate is JPY/GBP -- the amount of yes per GBP ----
+    ## cross rate is JPY/GBP -- the amount of yen per GBP ----
     crossRate <- allData$Cfunding * allData$Cinvesting
     
-    ## percent chage in currencies
+    ## percent change in currencies
     perChangeGBP <- Delt(crossRate)[-1]
     perChangeJPY <- lag(crossRate)[-1]/crossRate[-length(crossRate)] - 1
     
@@ -57,12 +57,9 @@ shinyServer(function(input, output) {
     totRet <<- totRet
   })
   
-  ### uncomment this to see an interactive plot via dygraphs
   output$plot <- renderDygraph({
     
     #    allData1 <- dataInput()
-    
-    ## TODO: Now we need to input the carry trade profit calculation here ---- 
     
         dygraph(dataInput()) %>%  ## you can use 'main = ' and 'ylab =' and so forth here to set the charts title, yaxis, and so on
       dyRangeSelector()
