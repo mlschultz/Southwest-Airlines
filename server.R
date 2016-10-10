@@ -1,4 +1,4 @@
-library(quantmod)
+library(ggmap)
 library(dygraphs)
 
 shinyServer(function(input, output) {
