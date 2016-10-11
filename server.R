@@ -4,7 +4,8 @@ library(dygraphs)
 shinyServer(function(input, output) {
   
   dataInput <- reactive({
-    
+
+      ## here is where we would list cities ----
     fxFundingSym <- switch(input$funding, 
                            "1" = "EXJPUS",
                            "2" = "EXUSUK")
